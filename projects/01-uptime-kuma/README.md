@@ -57,6 +57,19 @@ Deployed a containerized uptime monitoring solution to track availability and pe
 │  └───────────────────────────────────┘ │
 └─────────────────────────────────────────┘
 ```
+## 📸 Screenshots
+
+### Uptime Kuma - Houston Mobile Notary Pros Monitor
+![Uptime Kuma - Notary](./uptime-kuma-notary.png)
+*Real-time monitoring showing 100% uptime and 217ms average response time*
+
+### Uptime Kuma - ProxRecon Monitor
+![Uptime Kuma - ProxRecon](./uptime-kuma-proxrecon.png)
+*Secondary monitor tracking ProxRecon with 188ms average response time*
+
+### Portainer - Container Management
+![Portainer Container Details](./portainer-container-details.png)
+*Uptime Kuma container running in Docker with automatic restart policy*
 
 ## 📝 Implementation Steps
 
