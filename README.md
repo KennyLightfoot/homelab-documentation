@@ -43,9 +43,13 @@ Set up enterprise-grade uptime monitoring for production websites using containe
 
 ---
 
-### 🚧 Project 2: Network-Wide Ad Blocking with Pi-hole
-**Status:** Planned  
-**Skills:** DNS Management, Network Security
+### ✅ [Project 2: Network-Wide Ad Blocking with Pi-hole](./projects/02-pihole/)
+**Status:** Complete  
+**Skills:** DNS Management, Network Security, Docker, Ad Blocking
+
+Deployed a containerized Pi-hole DNS server providing network-wide ad blocking, malicious domain filtering, and DNS query analytics. Built on dedicated Ubuntu Server VM with Docker, demonstrating service isolation and persistent data management.
+
+**Tech Stack:** Ubuntu Server 24.04, Docker, Pi-hole v6.3
 
 ### 🚧 Project 3: VLAN Segmentation & Network Security
 **Status:** Planned  
@@ -89,4 +93,4 @@ Building this lab as part of my journey into Cloud Engineering and DevOps. Alway
 
 ---
 
-*Last Updated: January 20, 2026 11:47 AM CST*
+*Last Updated: January 20, 2026 5:30 PM CST*
