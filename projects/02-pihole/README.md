@@ -69,9 +69,21 @@ Deployed a containerized Pi-hole DNS server to provide network-wide ad blocking,
 
 ## 📸 Screenshots
 
-### Pi-hole Dashboard
+### Pi-hole Dashboard (Initial Deployment)
 ![Pi-hole Dashboard](./pihole-dashboard.png)
-*Main dashboard showing 117 total queries with 0.9% blocked, 68,449 domains on blocklists*
+*Initial deployment showing 117 total queries, 68,449 domains on default blocklists*
+
+### Pi-hole Dashboard (Enhanced)
+![Pi-hole Dashboard Enhanced](./pihole-dashboard-enhanced.png)
+*After enhancement: 387,068 domains across 6 threat intelligence feeds*
+
+### Blocklist Configuration
+![Blocklists Configured](./pihole-blocklists.png)
+*Six threat intelligence feeds enabled: Steven Black, Malware Domains, Phishing Army, EasyPrivacy, Windows Spy Blocker, AdGuard*
+
+### Local DNS Configuration
+![Local DNS Test](./pihole-local-dns-test.png)
+*Custom DNS records working: pihole.lab, uptime.lab, portainer.lab resolving correctly*
 
 ### Query Log - DNS Activity
 ![Query Log](./pihole-query-log.png)
@@ -84,7 +96,187 @@ Deployed a containerized Pi-hole DNS server to provide network-wide ad blocking,
 ### DNS Resolution Test
 ![nslookup Test](./nslookup-test.png)
 *PowerShell confirmation showing successful DNS queries through Pi-hole*
+```
 
+---
+
+# 🚀 PROJECT 3: COMPLETE PREP PACKAGE
+
+---
+
+## 📋 Project 3 Blueprint
+
+### **Project Name:** Network Segmentation with VLANs
+
+### **Objective:**
+Implement network segmentation using VLANs to isolate homelab environment from production business network, reducing security risk while enabling safe experimentation with enterprise technologies.
+
+---
+
+## 🎯 What We're Building
+
+### **Network Architecture:**
+```
+CURRENT STATE:
+- All devices on home network (192.168.1.x or VMware NAT 192.168.226.x)
+- Lab VMs can potentially affect production systems
+- No isolation between work and experiments
+
+TARGET STATE:
+┌────────────────────────────────────────────┐
+│            Home Router                     │
+│          192.168.1.1/24                    │
+└──────────────┬─────────────────────────────┘
+               │
+    ┌──────────┴──────────┐
+    │                     │
+┌───▼──────────────┐  ┌──▼─────────────────┐
+│ VLAN 10          │  │ VLAN 20            │
+│ PRODUCTION       │  │ HOMELAB            │
+│ 192.168.10.0/24  │  │ 192.168.20.0/24    │
+│                  │  │                    │
+│ • Work PC        │  │ • Ubuntu-Server    │
+│ • Girlfriend PC  │  │ • Pi-hole-Server   │
+│ • Notary Sites   │  │ • Future Lab VMs   │
+│                  │  │                    │
+│ ✅ Protected     │  │ ✅ Isolated        │
+└──────────────────┘  └────────────────────┘
+        │                      │
+        └──────────┬───────────┘
+                   │
+         Firewall Rules:
+         • Lab → Production: DENY
+         • Production → Lab Services: ALLOW (specific ports)
+         • Both → Internet: ALLOW
+```
+
+---
+
+## 🛠️ Implementation Plan
+
+### **Phase 1: VMware Network Configuration (1 hour)**
+- Create VMnet10 (Production VLAN)
+- Create VMnet20 (Lab VLAN)
+- Configure DHCP settings
+- Set IP ranges and subnets
+
+### **Phase 2: Migrate Existing VMs (45 mins)**
+- Move Ubuntu-Server-Lab to VLAN 20
+- Move Pi-hole-Server to VLAN 20
+- Update IP addresses
+- Test connectivity
+
+### **Phase 3: Routing & Firewall (1 hour)**
+- Configure inter-VLAN routing rules
+- Set firewall policies
+- Test isolation
+- Verify selective access
+
+### **Phase 4: Documentation (45 mins)**
+- Network topology diagram
+- IP address schema documentation
+- Firewall rules documentation
+- Testing results
+
+---
+
+## 📊 Success Criteria
+
+**Working Configuration:**
+- ✅ VMs in VLAN 20 can access internet
+- ✅ VMs in VLAN 20 CANNOT access VLAN 10
+- ✅ Windows PC (VLAN 10) CAN access specific lab services (Pi-hole DNS, Uptime Kuma web UI)
+- ✅ All services remain functional after migration
+- ✅ Network diagram accurately reflects architecture
+
+---
+
+## 💼 Skills Demonstrated
+
+**Technical Skills:**
+- VLAN configuration and management
+- IP addressing and subnetting
+- Network segmentation architecture
+- Firewall rule creation and testing
+- Security policy implementation
+- Network documentation
+
+**Soft Skills:**
+- Risk management and mitigation
+- Security-first thinking
+- Infrastructure planning
+- Technical documentation
+- Testing and verification methodologies
+
+---
+
+## 🎓 Why This Project Matters
+
+**For Your Career:**
+- Enterprise networks use VLANs extensively
+- Shows security-conscious infrastructure design
+- Demonstrates network architecture skills
+- Proves you understand defense-in-depth
+
+**For Your Business:**
+- Protects notary business operations
+- Enables safe experimentation
+- Reduces risk of lab breaking production
+- Professional network design
+
+**Resume Impact:**
+> "Designed and implemented network segmentation using VLANs to isolate development/lab environment from production business infrastructure, implementing firewall policies for controlled inter-VLAN communication while maintaining service accessibility."
+
+---
+
+# 📝 PROMPT FOR NEW CONVERSATION
+
+---
+
+## 🎯 Copy This Into New Chat
+```
+I'm continuing my homelab infrastructure project and ready to start Project 3: Network Segmentation with VLANs.
+
+BACKGROUND - COMPLETED PROJECTS:
+- Project 1: Uptime Kuma monitoring system (Complete)
+- Project 2: Pi-hole DNS server with 387K blocked domains and local DNS records (Complete)
+
+CURRENT INFRASTRUCTURE:
+- Ubuntu-Server-Lab VM (192.168.226.128, VMware NAT)
+  - Hosts: Uptime Kuma (port 3001), Portainer (port 9443)
+  - RAM: 4GB, CPU: 2 cores, Disk: 50GB
+  - OS: Ubuntu Server 24.04 LTS
+
+- Pi-hole-Server VM (192.168.1.232, VMware Bridged)
+  - Hosts: Pi-hole DNS (port 53, web interface 8080)
+  - RAM: 2GB, CPU: 2 cores, Disk: 20GB
+  - OS: Ubuntu Server 24.04 LTS
+  - Enhanced with 6 threat intelligence feeds (387K domains)
+  - Local DNS: pihole.lab, uptime.lab, portainer.lab
+
+- Host: Windows 11, Intel 14th Gen, 32GB RAM
+- Hypervisor: VMware Workstation Pro
+
+BUSINESS CONTEXT:
+I run a mobile notary business from home with my girlfriend. We need to ensure lab experiments don't affect production business operations or her computer.
+
+PROJECT 3 GOAL:
+Implement VLAN segmentation to:
+1. Isolate homelab traffic (VLAN 20) from production network (VLAN 10)
+2. Prevent lab experiments from affecting business operations
+3. Enable safe testing while maintaining service accessibility
+4. Implement firewall rules for controlled inter-VLAN communication
+
+DESIRED OUTCOME:
+- VLAN 10 (Production): 192.168.10.0/24 - Work devices, business traffic
+- VLAN 20 (Homelab): 192.168.20.0/24 - Lab VMs, experiments
+- Firewall: Lab cannot reach Production, Production can access specific lab services
+- Both VMs migrated to VLAN 20 and functional
+- Complete network documentation
+
+I have intermediate networking knowledge and understand IP addressing, but this is my first VLAN implementation. I prefer step-by-step guidance with clear explanations of WHY we're doing each step, not just WHAT to do.
+
+Ready to begin - let's design and implement this network segmentation!
 ## 📝 Implementation Steps
 
 ### 1. VM Creation & Ubuntu Installation
