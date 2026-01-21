@@ -267,6 +267,30 @@ pihole -g
 
 **Result:** Increased blocking capability from 68,449 to 387,068 domains (5.6x improvement)
 
+### 10. Local DNS Records & Network Configuration
+
+**Configured internal DNS namespace for homelab services:**
+
+Added custom DNS records in Pi-hole (Local DNS → DNS Records):
+
+| Service | DNS Name | IP Address | Access URL |
+|---------|----------|------------|------------|
+| Pi-hole | pihole.lab | 192.168.1.232 | http://pihole.lab:8080/admin |
+| Uptime Kuma | uptime.lab | 192.168.226.128 | http://uptime.lab:3001 |
+| Portainer | portainer.lab | 192.168.226.128 | https://portainer.lab:9443 |
+
+**Network Configuration:**
+- Disabled IPv6 on lab workstation to prevent router DNS advertisement override
+- In enterprise environments, this would be addressed via router configuration or Pi-hole IPv6 setup
+- Common interim configuration during IPv4-to-IPv6 transition
+- All DNS queries now route through Pi-hole with local resolution working correctly
+
+**Benefits:**
+- Eliminates need to remember IP addresses
+- Professional internal DNS management
+- Easier service discovery and access
+- Demonstrates DNS administration and troubleshooting skills
+
 ## 📊 Results & Metrics
 
 **Current Performance:**
@@ -333,7 +357,7 @@ pihole -g
 - [ ] Create custom regex blocking patterns (optional)
 
 ### Phase 2: Advanced Configuration (Medium)
-- [ ] Implement local DNS records for internal services
+- [x] Implemented local DNS records for internal services (pihole.lab, uptime.lab, portainer.lab)
 - [ ] Configure DNS-over-HTTPS (DoH) with cloudflared
 - [ ] Set up conditional forwarding for hostname resolution
 - [ ] Create whitelist rules for false positives
