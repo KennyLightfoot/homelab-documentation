@@ -49,7 +49,7 @@ Deployed a containerized Pi-hole DNS server to provide network-wide ad blocking,
 │  │  │  │  │   DNS: 53      │  │   │ │ │
 │  │  │  │  │   Web: 8080    │  │   │ │ │
 │  │  │  │  │   Blocklists:  │  │   │ │ │
-│  │  │  │  │   68,449       │  │   │ │ │
+│  │  │  │  │   387,068       │  │   │ │ │
 │  │  │  │  └────────────────┘  │   │ │ │
 │  │  │  └──────────────────────┘   │ │ │
 │  │  │                             │ │ │
@@ -228,14 +228,52 @@ nslookup google.com 192.168.1.232
 - Query logging: Enabled
 - Privacy level: Show everything
 
+### 9. Enhanced Blocklists Configuration
+
+**Added Multiple Threat Intelligence Feeds:**
+
+Configured 6 additional blocklists through Pi-hole web interface:
+
+1. **Steven Black's Unified Hosts**
+   - URL: `https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts`
+   - Coverage: ~400K domains (ads, malware, fake news)
+
+2. **Malware Domains List**
+   - URL: `https://mirror1.malwaredomains.com/files/justdomains`
+   - Coverage: Known malware hosts
+
+3. **Phishing Army**
+   - URL: `https://phishing.army/download/phishing_army_blocklist_extended.txt`
+   - Coverage: Phishing and scam sites
+
+4. **EasyPrivacy**
+   - URL: `https://v.firebog.net/hosts/Easyprivacy.txt`
+   - Coverage: Tracking scripts and beacons
+
+5. **Windows Spy Blocker**
+   - URL: `https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt`
+   - Coverage: Microsoft telemetry
+
+6. **AdGuard DNS Filter**
+   - URL: `https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt`
+   - Coverage: Ads and trackers
+
+**Applied Changes:**
+```bash
+# Update gravity to process new blocklists
+pihole -g
+# Or via web interface: Tools → Update Gravity → Update
+```
+
+**Result:** Increased blocking capability from 68,449 to 387,068 domains (5.6x improvement)
+
 ## 📊 Results & Metrics
 
 **Current Performance:**
-- **Total Queries:** 117+
-- **Queries Blocked:** 0.9% (baseline with browser ad-blocking)
-- **Blocklist Domains:** 68,449
-- **Average Response Time:** <20ms (cached), <40ms (upstream)
-- **Uptime:** 100% since deployment
+- **Total Queries:** 345+
+- **Queries Blocked:** 0.3% (baseline with browser ad-blocking + enhanced blocklists)
+- **Blocklist Domains:** 387,068 (enhanced from default 68,449)
+- **Blocklists Active:** 6 threat intelligence feeds
 
 **Query Types Handled:**
 - A records (IPv4 addresses)
@@ -287,11 +325,12 @@ nslookup google.com 192.168.1.232
 
 ## 🚀 Future Enhancements
 
-### Phase 1: Enhanced Blocking (Easy)
-- [ ] Add Steven Black's Unified Hosts list (500K+ domains)
-- [ ] Configure malicious domain feeds
-- [ ] Add tracking and telemetry blocklists
-- [ ] Create custom regex blocking patterns
+### Phase 1: Enhanced Blocking ✅ COMPLETE
+- [x] Added Steven Black's Unified Hosts list
+- [x] Configured malicious domain feeds (Malware Domains, Phishing Army)
+- [x] Added tracking and telemetry blocklists (EasyPrivacy, Windows Spy Blocker, AdGuard)
+- [x] Increased blocking from 68K to 387K domains
+- [ ] Create custom regex blocking patterns (optional)
 
 ### Phase 2: Advanced Configuration (Medium)
 - [ ] Implement local DNS records for internal services
