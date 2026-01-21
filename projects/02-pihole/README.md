@@ -284,19 +284,6 @@ nslookup google.com 192.168.1.232
 6. **Network Modes:** NAT vs Bridged networking trade-offs for lab environments
 7. **Log Analysis:** Using container logs to identify root causes of failures
 
-## 🎤 Interview Talking Points
-
-**"Tell me about a technical challenge you overcame":**
-> "When deploying Pi-hole, I encountered DNS query timeouts despite successful network connectivity. I used a systematic troubleshooting approach: verified network connectivity with ping, checked port bindings with netstat, reviewed container logs, and tested firewall rules. Through log analysis, I discovered Pi-hole was rejecting queries from my network subnet due to its 'local-only' configuration. I resolved this by understanding Pi-hole's network origin filtering and switching from NAT to Bridged networking while updating interface settings. This taught me the importance of reading application logs and understanding how network isolation affects service accessibility."
-
-**"Describe your experience with containerization":**
-> "I deployed Pi-hole as a Docker container with persistent volume mapping for configuration data. This approach provides service isolation, easy version management, and the ability to recreate containers without data loss. I configured port mapping to expose DNS (53) and web interface (8080) services, used environment variables for timezone and authentication, and implemented an always-restart policy for automatic recovery. The containerized approach made it easy to troubleshoot issues by examining logs and recreating the container with different configurations during network troubleshooting."
-
-**"What security projects have you implemented?":**
-> "I implemented a network-wide DNS filtering solution using Pi-hole, which blocks malicious domains, tracking scripts, and advertising networks at the DNS level. This provides defense-in-depth security by preventing clients from even resolving potentially harmful domains before any HTTP connection is attempted. The solution includes query logging for security monitoring and analytics, allowing me to identify suspicious DNS patterns. I configured it with 68,000+ blocked domains from community-maintained blocklists and set up upstream DNS with privacy-focused providers."
-
-**"How do you approach troubleshooting?":**
-> "During Pi-hole deployment, I encountered DNS timeouts. I used a layered troubleshooting approach: first verified basic network connectivity (Layer 3), then checked if the service was listening on the correct ports (Layer 4), tested firewall rules, and finally analyzed application logs. This systematic approach led me to discover the root cause was Pi-hole's subnet-based access control rejecting my queries. I always start with the OSI model layers and work up, checking assumptions at each level before moving to the next."
 
 ## 🚀 Future Enhancements
 
@@ -365,19 +352,3 @@ projects/02-pihole/
 **Project Completion Date:** January 20, 2026  
 **Time Investment:** ~2.5 hours  
 **Difficulty Rating:** Intermediate (due to networking troubleshooting)  
-**Resume Value:** ⭐⭐⭐⭐⭐ High (DNS, Docker, Security, Troubleshooting)
-```
-
----
-
-## 📸 STEP 3: Add Your Screenshots
-
-**Create the folder structure:**
-```
-projects/
-  └── 02-pihole/
-      ├── README.md (file you just created)
-      ├── pihole-dashboard.png
-      ├── pihole-query-log.png
-      ├── windows-dns-settings.png
-      └── nslookup-test.png
