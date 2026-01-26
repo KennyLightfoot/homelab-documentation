@@ -51,9 +51,15 @@ Deployed a containerized Pi-hole DNS server providing network-wide ad blocking, 
 
 **Tech Stack:** Ubuntu Server 24.04, Docker, Pi-hole v6.3
 
-### 🚧 Project 3: VLAN Segmentation & Network Security
-**Status:** Planned  
-**Skills:** Network Design, Security Architecture
+### ✅ Project 3: VLAN Network Segmentation
+**Status:** Complete  
+**Skills:** pfSense, Network Segmentation, Firewall Rules, Inter-VLAN Routing, Advanced Troubleshooting
+
+Implemented enterprise-grade network isolation using pfSense virtual router with controlled access between Production and Homelab VLANs.
+
+**Tech Stack:** pfSense 2.8.1, VMware Workstation Pro, Ubuntu Server 24.04
+
+[View Project Details](./projects/03-vlan-segmentation/)
 
 ### 🚧 Project 4: SIEM with Wazuh
 **Status:** Planned  
