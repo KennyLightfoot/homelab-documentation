@@ -26,8 +26,9 @@ This repository documents my homelab environment where I build, test, and learn 
 
 **Network:**
 - Segmented VLANs for production/lab isolation
-- pfSense firewall (planned)
-- Ubiquiti networking equipment (planned)
+- pfSense virtual router (deployed)
+- VLAN 10 (Production): 192.168.10.0/24
+- VLAN 20 (Homelab): 192.168.20.0/24
 
 ---
 
@@ -99,4 +100,4 @@ Building this lab as part of my journey into Cloud Engineering and DevOps. Alway
 
 ---
 
-*Last Updated: January 20, 2026 5:30 PM CST*
+*Last Updated: January 25, 2026*
